@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import { CardImage } from "../YoutuberCard/components/CardImage";
-import { CardSubtitle } from "../YoutuberCard/components/CardSubtitle";
-import { CardTitle } from "../YoutuberCard/components/CardTitle";
-import { CardDescription } from "../YoutuberCard/components/CardDescription";
-import { VideoModal } from "../VideoModal/VideoModal";
+import { AiBadge } from '../AiBadge/AiBadge';
+import { VideoModal } from '../VideoModal/VideoModal';
+import { CardImage } from './components/CardImage';
+import { CardTitle }  from './components/CardTitle';
+import { CardSubtitle } from './components/CardSubtitle';
+import { CardDescription } from './components/CardDescription';
 import type { Tables } from "~/types/types";
-import { AiBadge } from "../AiBadge/AiBadge";
 
 interface YoutubeVideoProps {
-  video: Tables<'youtube_videos'>
-  channelName: Tables<'youtube_channel_ids'>['channel_name']
+  video: Tables<'youtube_videos'>;
+  channelName: Tables<'youtube_channel_ids'>['channel_name'];
 }
 
 export function YoutubeVideoCard({ video, channelName }: YoutubeVideoProps) {
@@ -24,7 +24,6 @@ export function YoutubeVideoCard({ video, channelName }: YoutubeVideoProps) {
           />
         )}
 
-        {/* Thumbnail area - clickable */}
         <div 
           className="relative cursor-pointer"
           onClick={() => setIsModalOpen(true)}
@@ -34,19 +33,8 @@ export function YoutubeVideoCard({ video, channelName }: YoutubeVideoProps) {
             altText={video.title} 
           />
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent h-20" />
-          
-          {/* Play button overlay */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-            <div className="bg-black/50 rounded-full p-4">
-              <svg className="w-12 h-12 text-white" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-          </div>
         </div>
-
-        {/* Content area - not clickable */}
-        <div className="p-5 space-y-3" onClick={(e) => e.stopPropagation()}>
+        <div className="p-5 space-y-3">
           <CardTitle title={video.title} />
           <CardSubtitle channelName={channelName} />
           <CardDescription description={video.description} />
@@ -60,4 +48,4 @@ export function YoutubeVideoCard({ video, channelName }: YoutubeVideoProps) {
       />
     </>
   );
-}
+} 
