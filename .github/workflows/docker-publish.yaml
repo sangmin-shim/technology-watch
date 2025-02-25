@@ -33,3 +33,6 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ghcr.io/${{ github.repository }}:latest
+
+      - name: Call Portainer Webhook
+        run: curl -X POST ${{ secrets.PORTAINER_WEBHOOK_URL }}
