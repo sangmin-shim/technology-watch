@@ -1,7 +1,7 @@
 import type { Tables } from "~/types/types";
 
 interface CardSubtitleProps {
-  channelName: Tables<'youtube_channel_ids'>['channel_name'];
+  channelName: Tables<"youtube_channel_ids">["channel_name"];
 }
 
 export function CardSubtitle({ channelName }: CardSubtitleProps) {
@@ -10,4 +10,4 @@ export function CardSubtitle({ channelName }: CardSubtitleProps) {
       {channelName}
     </h3>
   );
-} 
+}
