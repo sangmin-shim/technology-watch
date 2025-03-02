@@ -37,7 +37,7 @@ export default function Home() {
   const handleFilterChange = (selected: Channels) => {
     setFilteredChannels(selected);
     if (selected.length === 0) {
-      setVideos([]); // Show all videos if no filter
+      setVideos([]);
     } else {
       setVideos(
         videosFromDB.filter((video) =>
@@ -54,7 +54,7 @@ export default function Home() {
     <div className="min-h-screen bg-gray-900 py-12">
       <div className="container mx-auto px-4 flex flex-col gap-5">
         <h1 className="text-4xl font-bold text-white">
-          Featured Videos {totalVideosCount}
+          Youtube Video related to electronic component {totalVideosCount}
         </h1>
         <CardFilterContainer
           channels={channelsFromDB}
