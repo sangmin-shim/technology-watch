@@ -34,7 +34,7 @@ function CardFilterContainer({
   };
 
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 flex-wrap justify-center md:justify-start">
       <Button
         className="hover:cursor-pointer"
         variant="secondary"
