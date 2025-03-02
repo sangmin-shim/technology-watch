@@ -18,9 +18,7 @@ export function YoutubeVideoCard({ video, channelName }: YoutubeVideoProps) {
   return (
     <>
       <div className="bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 relative">
-        {/* {video.is_validated_by_ai && */}
-        <AiBadge aiScore={video.ai_score} />
-        {/* } */}
+        {video.is_validated_by_ai && <AiBadge aiScore={video.ai_score} />}
 
         {/* Thumbnail area - clickable */}
         <div

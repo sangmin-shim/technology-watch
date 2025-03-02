@@ -5,7 +5,7 @@ interface AiBadgeProps {
 export function AiBadge({ aiScore }: AiBadgeProps) {
   return (
     <div className="absolute top-2 right-2 z-10 group">
-      <div className="bg-blue-500 p-2 rounded-full shadow-lg">
+      <div className="bg-red-500 p-2 rounded-full shadow-lg">
         <svg
           className="w-4 h-4 text-white"
           fill="none"

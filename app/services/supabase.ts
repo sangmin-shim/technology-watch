@@ -1,5 +1,5 @@
-import { createClient } from '@supabase/supabase-js';
-import type { Database } from '~/types/types';
+import { createClient } from "@supabase/supabase-js";
+import type { Database } from "~/types/types";
 
 export const supabase = createClient<Database>(
   process.env.VITE_SUPABASE_URL!,
@@ -9,16 +9,40 @@ export const supabase = createClient<Database>(
 export const youtubeService = {
   async getVideos() {
     const { data, error } = await supabase
-      .from('youtube_videos')
-      .select(`
+      .from("youtube_videos")
+      .select(
+        `
         *,
         youtube_channel_ids (
           channel_name
         )
-      `)
-      .order('created_at', { ascending: false });
+      `
+      )
+      .order("published_at", { ascending: false });
 
     if (error) throw error;
     return data;
-  }
+  },
+
+  async getValidatedVideosByAI() {
+    const { data, error } = await supabase
+      .from("youtube_videos")
+      .select(
+        `
+        *,
+        youtube_channel_ids (
+          channel_name
+        )
+      `
+      )
+      .eq("is_validated_by_ai", true)
+      .order("ai_score", { ascending: false });
+
+    if (error) throw error;
+    return data;
+  },
 };
+
+export type VideosWithChannel = Awaited<
+  ReturnType<typeof youtubeService.getVideos>
+>;
