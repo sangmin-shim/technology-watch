@@ -41,8 +41,19 @@ export const youtubeService = {
     if (error) throw error;
     return data;
   },
+
+  async getChannels() {
+    const { data, error } = await supabase
+      .from("youtube_channel_ids")
+      .select("*");
+
+    if (error) throw error;
+    return data;
+  },
 };
 
 export type VideosWithChannel = Awaited<
   ReturnType<typeof youtubeService.getVideos>
 >;
+
+export type Channels = Awaited<ReturnType<typeof youtubeService.getChannels>>;
