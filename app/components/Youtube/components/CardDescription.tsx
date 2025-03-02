@@ -1,45 +1,58 @@
-import { useState } from 'react';
+"use client";
+
+import { useState, useRef } from "react";
 import type { Tables } from "~/types/types";
+import { FaRegArrowAltCircleDown, FaRegArrowAltCircleUp } from "react-icons/fa";
 
 interface CardDescriptionProps {
-  description: Tables<'youtube_videos'>['description'];
+  description: Tables<"youtube_videos">["description"];
   maxLength?: number;
 }
 
-export function CardDescription({ description, maxLength = 150 }: CardDescriptionProps) {
+export function CardDescription({
+  description,
+  maxLength = 150,
+}: CardDescriptionProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const contentRef = useRef<HTMLParagraphElement>(null);
+
+  const shouldShowButton = description && description.length > maxLength;
 
   return (
     <div className="relative">
-      <p className={`text-gray-300 text-sm ${isExpanded ? '' : 'line-clamp-3'}`}>
-        {description ?? ''}
-      </p>
-      {description && description.length > maxLength && (
-        <div className="flex justify-center mt-2">
+      <div
+        className="overflow-hidden transition-all duration-300 ease-in-out"
+        style={{ maxHeight: isExpanded ? "1000px" : "4.5em" }}
+      >
+        <p
+          ref={contentRef}
+          className={`text-gray-300 text-sm ${
+            isExpanded ? "" : "line-clamp-3 h-10"
+          }`}
+        >
+          {description || ""}
+        </p>
+      </div>
+
+      {shouldShowButton && (
+        <div className="flex justify-center my-2 relative">
           <button
             onClick={(e) => {
               e.stopPropagation();
               setIsExpanded(!isExpanded);
             }}
-            className="text-blue-400 hover:text-blue-300 transition-colors cursor-pointer"
+            className="transition-colors cursor-pointer absolute -bottom-10"
             title={isExpanded ? "Show less" : "Read more"}
+            aria-label={isExpanded ? "Show less" : "Read more"}
           >
-            <svg 
-              className={`w-5 h-5 transform transition-transform ${isExpanded ? 'rotate-180' : ''}`}
-              fill="none" 
-              viewBox="0 0 24 24" 
-              stroke="currentColor"
-            >
-              <path 
-                strokeLinecap="round" 
-                strokeLinejoin="round" 
-                strokeWidth={2} 
-                d="M19 9l-7 7-7-7" 
-              />
-            </svg>
+            {isExpanded ? (
+              <FaRegArrowAltCircleUp className="w-7 h-7 text-white hover:text-gray-200" />
+            ) : (
+              <FaRegArrowAltCircleDown className="w-7 h-7 text-white hover:text-gray-200" />
+            )}
           </button>
         </div>
       )}
     </div>
   );
-} 
+}

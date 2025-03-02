@@ -6,10 +6,11 @@ import {
 } from "../services/supabase";
 import { useLoaderData } from "react-router";
 import { useMemo, useState } from "react";
-import type { Tables } from "~/types/types";
 import CardFilterContainer from "~/components/Youtube/components/CardFilterContainer";
 import { CardContainer } from "~/components/Youtube/components/CardContainer";
 import CardPaginationContainer from "~/components/Youtube/components/CardPaginationContainer";
+import TotalVideosCountContainer from "~/components/Youtube/components/TotalVideosCountContainer";
+import PageTitleContainer from "~/components/Youtube/PageTitleContainer";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -17,6 +18,7 @@ export function meta({}: Route.MetaArgs) {
     { name: "description", content: "Browse your favorite YouTubers!" },
   ];
 }
+import { ImYoutube } from "react-icons/im";
 
 export const loader = async () => {
   const videosFromDB = await youtubeService.getValidatedVideosByAI();
@@ -45,10 +47,6 @@ export default function Home() {
     setCurrentPage(page);
   };
 
-  const totalVideosCount = useMemo(() => {
-    return videos.length;
-  }, [videos]);
-
   const handleFilterChange = (filteredChannels: Channels) => {
     if (filteredChannels.length === 0) {
       setVideos([]);
@@ -61,16 +59,19 @@ export default function Home() {
           )
         )
       );
-      setCurrentPage(1); // Reset to first page after filtering
+      setCurrentPage(1);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-900 py-12">
+    <div className="min-h-screen bg-gray-900 py-12 flex flex-col gap-5">
       <div className="container mx-auto px-4 flex flex-col gap-5">
-        <h1 className="text-4xl font-bold text-white">
-          Youtube Video related to electronic component {totalVideosCount}
-        </h1>
+        <PageTitleContainer
+          icon={<ImYoutube className="w-14 h-14 text-red-600" />}
+          title="Electronic component"
+        />
+        <TotalVideosCountContainer videos={videos} />
+
         <CardFilterContainer
           channels={channelsFromDB}
           onFilters={handleFilterChange}
