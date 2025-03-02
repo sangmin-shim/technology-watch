@@ -9,6 +9,7 @@ import { useMemo, useState } from "react";
 import type { Tables } from "~/types/types";
 import CardFilterContainer from "~/components/Youtube/components/CardFilterContainer";
 import { CardContainer } from "~/components/Youtube/components/CardContainer";
+import CardPaginationContainer from "~/components/Youtube/components/CardPaginationContainer";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -28,25 +29,39 @@ export default function Home() {
   const { videosFromDB, channelsFromDB } = useLoaderData<typeof loader>();
 
   const [videos, setVideos] = useState<VideosWithChannel>(videosFromDB);
-  const [filteredChannels, setFilteredChannels] = useState<Channels>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const DEFAULT_PAGE_SIZE = 9;
+  const totalPages = useMemo(
+    () => Math.ceil(videos.length / DEFAULT_PAGE_SIZE),
+    [videos]
+  );
+
+  const paginatedVideos = useMemo(() => {
+    const startIndex = (currentPage - 1) * DEFAULT_PAGE_SIZE;
+    return videos.slice(startIndex, startIndex + DEFAULT_PAGE_SIZE);
+  }, [videos, currentPage]);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
 
   const totalVideosCount = useMemo(() => {
     return videos.length;
   }, [videos]);
 
-  const handleFilterChange = (selected: Channels) => {
-    setFilteredChannels(selected);
-    if (selected.length === 0) {
+  const handleFilterChange = (filteredChannels: Channels) => {
+    if (filteredChannels.length === 0) {
       setVideos([]);
     } else {
       setVideos(
         videosFromDB.filter((video) =>
-          selected.some(
+          filteredChannels.some(
             (channel) =>
               channel.channel_name === video.youtube_channel_ids.channel_name
           )
         )
       );
+      setCurrentPage(1); // Reset to first page after filtering
     }
   };
 
@@ -61,7 +76,7 @@ export default function Home() {
           onFilters={handleFilterChange}
         />
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {videos.map((video) => (
+          {paginatedVideos.map((video) => (
             <CardContainer
               key={video.video_id}
               video={video}
@@ -69,6 +84,11 @@ export default function Home() {
             />
           ))}
         </div>
+        <CardPaginationContainer
+          totalPages={totalPages}
+          currentPage={currentPage}
+          onPageChange={handlePageChange}
+        />
       </div>
     </div>
   );
