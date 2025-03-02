@@ -45,7 +45,7 @@ export function AiBadge({ aiScore }: AiBadgeProps) {
           >
             <CircularProgressbar
               value={aiScore}
-              text={`${aiScore}%`}
+              text={`${aiScore}`}
               styles={buildStyles({
                 pathColor: pathColor,
                 textColor: "#fff",

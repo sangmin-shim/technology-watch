@@ -14,8 +14,8 @@ import PageTitleContainer from "~/components/Youtube/PageTitleContainer";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Youtuber Directory" },
-    { name: "description", content: "Browse your favorite YouTubers!" },
+    { title: "Watch technology" },
+    { name: "description", content: "Watch technology for youtube !" },
   ];
 }
 import { ImYoutube } from "react-icons/im";
