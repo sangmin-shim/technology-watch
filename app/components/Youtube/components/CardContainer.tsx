@@ -7,12 +7,12 @@ import { VideoModal } from "../../VideoModal/VideoModal";
 import type { Tables } from "~/types/types";
 import { AiBadge } from "../../AiBadge/AiBadge";
 
-interface YoutubeVideoProps {
+interface CardContainer {
   video: Tables<"youtube_videos">;
   channelName: Tables<"youtube_channel_ids">["channel_name"];
 }
 
-export function YoutubeVideoCard({ video, channelName }: YoutubeVideoProps) {
+export function CardContainer({ video, channelName }: CardContainer) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
