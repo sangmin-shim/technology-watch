@@ -26,7 +26,7 @@ export function CardDescription({
       >
         <p
           ref={contentRef}
-          className={`text-gray-300 text-sm ${
+          className={`text-gray-500 text-sm ${
             isExpanded ? "" : "line-clamp-3 h-10"
           }`}
         >
@@ -46,9 +46,9 @@ export function CardDescription({
             aria-label={isExpanded ? "Show less" : "Read more"}
           >
             {isExpanded ? (
-              <FaRegArrowAltCircleUp className="w-7 h-7 text-white hover:text-gray-200" />
+              <FaRegArrowAltCircleUp className="w-7 h-7 text-gray-400 hover:text-gray-300" />
             ) : (
-              <FaRegArrowAltCircleDown className="w-7 h-7 text-white hover:text-gray-200" />
+              <FaRegArrowAltCircleDown className="w-7 h-7 text-gray-400 hover:text-gray-300" />
             )}
           </button>
         </div>

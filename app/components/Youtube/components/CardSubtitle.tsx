@@ -6,7 +6,7 @@ interface CardSubtitleProps {
 
 export function CardSubtitle({ channelName }: CardSubtitleProps) {
   return (
-    <h3 className="text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors">
+    <h3 className="text-md font-bold text-gray-500 transition-colors">
       {channelName}
     </h3>
   );

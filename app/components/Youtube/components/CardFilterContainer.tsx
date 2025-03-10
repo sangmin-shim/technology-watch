@@ -35,14 +35,14 @@ function CardFilterContainer({
 
   return (
     <div className="flex gap-2 flex-wrap justify-center md:justify-start">
-      <Button
+      {/* <Button
         className="hover:cursor-pointer"
         variant="secondary"
         onClick={() => handleAllClick()}
       >
         All
-      </Button>
-      {channels.map((channel) => (
+      </Button> */}
+      {/* {channels.map((channel) => (
         <Button
           key={channel.channel_id}
           className={`hover:cursor-pointer px-4 py-2 rounded-full text-sm font-medium transition-all
@@ -56,7 +56,7 @@ function CardFilterContainer({
         >
           {channel.channel_name}
         </Button>
-      ))}
+      ))} */}
     </div>
   );
 }

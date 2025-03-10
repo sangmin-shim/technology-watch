@@ -136,3 +136,8 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Sweet Alert */
+.swal2-html-container {
+  text-align: left !important;
+}

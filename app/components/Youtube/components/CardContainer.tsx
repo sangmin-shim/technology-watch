@@ -5,7 +5,9 @@ import { CardTitle } from "./CardTitle";
 import { CardDescription } from "./CardDescription";
 import { VideoModal } from "../../VideoModal/VideoModal";
 import type { Tables } from "~/types/types";
-import { AiBadge } from "../../AiBadge/AiBadge";
+import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
+import AiContainer from "~/components/Ai/AiContainer";
+import { PlayButtonOverlay } from "~/components/ui/svg";
 
 interface CardContainer {
   video: Tables<"youtube_videos">;
@@ -14,11 +16,24 @@ interface CardContainer {
 
 export function CardContainer({ video, channelName }: CardContainer) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-
+  let pathColor;
+  if (video.ai_score !== null) {
+    if (video.ai_score > 94) {
+      pathColor = "rgba(0, 255, 0, 1)"; // Green
+    } else if (video.ai_score > 84) {
+      pathColor = "rgba(0, 0, 255, 1)"; // Blue
+    } else if (video.ai_score > 79) {
+      pathColor = "rgba(135, 206, 235, 1)"; // Sky blue
+    } else {
+      pathColor = `rgba(62, 152, 199, ${video.ai_score / 100})`; // Default color
+    }
+  }
   return (
     <>
-      <div className="pb-7 bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 relative">
-        {video.is_validated_by_ai && <AiBadge aiScore={video.ai_score} />}
+      <div className="pb-7 bg-gray-800 rounded-xl h-fit min-h-16 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 relative">
+        {video.is_validated_by_ai && (
+          <AiContainer aiScore={video.ai_score} aiComment={video.ai_comment} />
+        )}
 
         {/* Thumbnail area - clickable */}
         <div
@@ -27,18 +42,7 @@ export function CardContainer({ video, channelName }: CardContainer) {
         >
           <CardImage imageUrl={video.thumbnail_url} altText={video.title} />
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-gray-900 to-transparent h-20" />
-          {/* Play button overlay */}
-          <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity">
-            <div className="bg-black/50 rounded-full p-4">
-              <svg
-                className="w-12 h-12 text-white"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path d="M8 5v14l11-7z" />
-              </svg>
-            </div>
-          </div>
+          <PlayButtonOverlay />
         </div>
 
         {/* Content area - not clickable */}
