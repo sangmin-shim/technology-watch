@@ -1,5 +1,5 @@
 import { createClient } from "@supabase/supabase-js";
-import type { Database } from "~/types/types";
+import type { Database } from "~/types/database.types";
 
 export const supabase = createClient<Database>(
   process.env.VITE_SUPABASE_URL!,
@@ -50,6 +50,15 @@ export const youtubeService = {
     if (error) throw error;
     return data;
   },
+
+  async getSummaries() {
+    const { data, error } = await supabase
+      .from("youtube_summaries")
+      .select("*");
+
+    if (error) throw error;
+    return data;
+  },
 };
 
 export type VideosWithChannel = Awaited<
@@ -57,3 +66,4 @@ export type VideosWithChannel = Awaited<
 >;
 
 export type Channels = Awaited<ReturnType<typeof youtubeService.getChannels>>;
+export type Summaries = Awaited<ReturnType<typeof youtubeService.getSummaries>>;

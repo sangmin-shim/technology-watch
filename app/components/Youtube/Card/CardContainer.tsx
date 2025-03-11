@@ -3,11 +3,11 @@ import { CardImage } from "./CardImage";
 import { CardSubtitle } from "./CardSubtitle";
 import { CardTitle } from "./CardTitle";
 import { CardDescription } from "./CardDescription";
-import { VideoModal } from "../../VideoModal/VideoModal";
-import type { Tables } from "~/types/types";
+import { VideoModal } from "../VideoModal/VideoModal";
 import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
-import AiContainer from "~/components/Ai/AiContainer";
+import AiContainer from "~/components/Youtube/Ai/AiContainer";
 import { PlayButtonOverlay } from "~/components/ui/svg";
+import type { Tables } from "~/types/database.types";
 
 interface CardContainer {
   video: Tables<"youtube_videos">;
@@ -30,7 +30,7 @@ export function CardContainer({ video, channelName }: CardContainer) {
   }
   return (
     <>
-      <div className="pb-7 bg-gray-800 rounded-xl h-fit min-h-16 shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105 relative">
+      <div className="pb-7 bg-gray-800 rounded-xl h-fit min-h-16 shadow-lg  hover:shadow-sm  hover:shadow-gray-300 transition-all duration-300 hover:scale-105 relative">
         {video.is_validated_by_ai && (
           <AiContainer aiScore={video.ai_score} aiComment={video.ai_comment} />
         )}

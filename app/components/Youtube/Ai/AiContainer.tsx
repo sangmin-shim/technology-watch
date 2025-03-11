@@ -21,8 +21,8 @@ function AiContainer({ aiScore, aiComment }: AiContainerProps) {
   }
 
   return (
-    <div className="text-white font-semibold absolute top-0 left- z-10 group w-full flex justify-between">
-      <div className="bg-gray-800  p-2">
+    <div className=" text-white font-semibold absolute top-0 left- z-10 group w-full flex justify-between">
+      <div className="rounded-tl-lg bg-gray-800  p-2">
         <CircularProgressbar
           className="w-16 h-16"
           value={aiScore ? aiScore : 0}

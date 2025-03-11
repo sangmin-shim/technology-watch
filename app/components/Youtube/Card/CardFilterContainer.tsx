@@ -35,28 +35,30 @@ function CardFilterContainer({
 
   return (
     <div className="flex gap-2 flex-wrap justify-center md:justify-start">
-      {/* <Button
+      <Button
         className="hover:cursor-pointer"
         variant="secondary"
         onClick={() => handleAllClick()}
       >
         All
-      </Button> */}
-      {/* {channels.map((channel) => (
-        <Button
-          key={channel.channel_id}
-          className={`hover:cursor-pointer px-4 py-2 rounded-full text-sm font-medium transition-all
-                    ${
-                      filteredChannels?.includes(channel)
-                        ? "bg-gray-100 text-gray-800 hover:bg-gray-200  border-gray-100"
-                        : "bg-black text-white border border-gray-700"
-                    }
-                `}
-          onClick={() => handleChannelClick(channel)}
-        >
-          {channel.channel_name}
-        </Button>
-      ))} */}
+      </Button>
+      <div>
+        {channels.map((channel) => (
+          <Button
+            key={channel.channel_id}
+            className={`hover:cursor-pointer px-4 py-2 rounded-full text-sm font-medium transition-all mb-2
+                      ${
+                        filteredChannels?.includes(channel)
+                          ? "bg-gray-100 text-gray-800 hover:bg-gray-200  border-gray-100"
+                          : "bg-black text-white border border-gray-700"
+                      }
+                  `}
+            onClick={() => handleChannelClick(channel)}
+          >
+            {channel.channel_name}
+          </Button>
+        ))}
+      </div>
     </div>
   );
 }
