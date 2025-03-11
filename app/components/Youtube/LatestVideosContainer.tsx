@@ -63,7 +63,7 @@ function LatestVideoDateRange({ summary }: { summary: Summaries[number] }) {
             new Date(summary.created_at).getTime() - 86400000
           ).toLocaleDateString() +
           " - " +
-          new Date(summary.created_at).toLocaleDateString()
+          new Date(new Date(summary.created_at).getTime()).toLocaleDateString()
         : ""}
     </p>
   );

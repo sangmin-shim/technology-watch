@@ -1,8 +1,8 @@
 "use client";
 
 import { useState, useRef } from "react";
-import type { Tables } from "~/types/types";
 import { FaRegArrowAltCircleDown, FaRegArrowAltCircleUp } from "react-icons/fa";
+import type { Tables } from "~/types/database.types";
 
 interface CardDescriptionProps {
   description: Tables<"youtube_videos">["description"];

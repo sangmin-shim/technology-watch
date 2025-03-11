@@ -5,8 +5,9 @@ import { AiBadge } from "./AiBadge";
 interface AiContainerProps {
   aiScore: number | null;
   aiComment: string | null;
+  isHovered: boolean;
 }
-function AiContainer({ aiScore, aiComment }: AiContainerProps) {
+function AiContainer({ aiScore, aiComment, isHovered }: AiContainerProps) {
   let pathColor;
   if (aiScore !== null) {
     if (aiScore > 94) {
@@ -22,7 +23,11 @@ function AiContainer({ aiScore, aiComment }: AiContainerProps) {
 
   return (
     <div className=" text-white font-semibold absolute top-0 left- z-10 group w-full flex justify-between">
-      <div className="rounded-tl-lg bg-gray-800  p-2">
+      <div
+        className={`rounded-tl-lg bg-gray-800  p-2  transition-opacity  duration-300 ${
+          isHovered ? "opacity-0 pointer-events-none" : "opacity-100"
+        }`}
+      >
         <CircularProgressbar
           className="w-16 h-16"
           value={aiScore ? aiScore : 0}

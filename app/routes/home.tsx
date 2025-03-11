@@ -38,18 +38,20 @@ export const loader = async () => {
       new Date(video.published_at) <= today
   );
 
-  const latestVideosSummary = summariesFromDB.filter((summary) =>
-    latestVideos.some((video) => {
-      const videoDate = new Date(video.published_at || video.created_at);
-      const summaryDate = new Date(summary.created_at);
+  const latestVideosSummary = summariesFromDB
+    .filter((summary) =>
+      latestVideos.some((video) => {
+        const videoDate = new Date(video.published_at || video.created_at);
+        const summaryDate = new Date(summary.created_at);
 
-      return (
-        videoDate.getFullYear() === summaryDate.getFullYear() &&
-        videoDate.getMonth() === summaryDate.getMonth() &&
-        videoDate.getDate() === summaryDate.getDate()
-      );
-    })
-  )[0];
+        return (
+          videoDate.getFullYear() === summaryDate.getFullYear() &&
+          videoDate.getMonth() === summaryDate.getMonth() &&
+          videoDate.getDate() === summaryDate.getDate()
+        );
+      })
+    )
+    .at(-1);
 
   return {
     videosFromDB,

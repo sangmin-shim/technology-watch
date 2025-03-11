@@ -16,23 +16,21 @@ interface CardContainer {
 
 export function CardContainer({ video, channelName }: CardContainer) {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  let pathColor;
-  if (video.ai_score !== null) {
-    if (video.ai_score > 94) {
-      pathColor = "rgba(0, 255, 0, 1)"; // Green
-    } else if (video.ai_score > 84) {
-      pathColor = "rgba(0, 0, 255, 1)"; // Blue
-    } else if (video.ai_score > 79) {
-      pathColor = "rgba(135, 206, 235, 1)"; // Sky blue
-    } else {
-      pathColor = `rgba(62, 152, 199, ${video.ai_score / 100})`; // Default color
-    }
-  }
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <>
-      <div className="pb-7 bg-gray-800 rounded-xl h-fit min-h-16 shadow-lg  hover:shadow-sm  hover:shadow-gray-300 transition-all duration-300 hover:scale-105 relative">
+      <div
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        className="pb-7 bg-gray-800 rounded-xl h-fit min-h-16 shadow-lg  hover:shadow-sm  hover:shadow-gray-300 transition-all duration-300 hover:scale-105 relative"
+      >
         {video.is_validated_by_ai && (
-          <AiContainer aiScore={video.ai_score} aiComment={video.ai_comment} />
+          <AiContainer
+            aiScore={video.ai_score}
+            aiComment={video.ai_comment}
+            isHovered={isHovered}
+          />
         )}
 
         {/* Thumbnail area - clickable */}
