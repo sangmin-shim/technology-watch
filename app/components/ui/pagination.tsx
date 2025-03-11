@@ -80,7 +80,7 @@ function PaginationPrevious({
       {...props}
     >
       <ChevronLeftIcon />
-      <span className="hidden sm:block ">Previous</span>
+      <span className="hidden sm:block ">Précédent</span>
     </PaginationLink>
   );
 }
@@ -99,7 +99,7 @@ function PaginationNext({
       )}
       {...props}
     >
-      <span className="hidden sm:block">Next</span>
+      <span className="hidden sm:block">Suivant</span>
       <ChevronRightIcon />
     </PaginationLink>
   );

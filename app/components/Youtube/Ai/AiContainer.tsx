@@ -39,7 +39,7 @@ function AiContainer({ aiScore, aiComment, isHovered }: AiContainerProps) {
             textSize: "1.2rem",
           })}
         />
-        <p>AI Score</p>
+        <p>Score IA</p>
       </div>
       <div>
         <AiBadge aiComment={aiComment} />

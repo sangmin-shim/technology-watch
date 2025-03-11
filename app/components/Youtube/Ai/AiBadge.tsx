@@ -15,7 +15,7 @@ export function AiBadge({ aiComment }: AiBadgeProps) {
         onClick={() => {
           const MySwal = withReactContent(Swal);
           MySwal.fire({
-            title: "🤖 AI recommands this video...",
+            title: "🤖 l'IA recommande cette vidéo",
             text: aiComment || "No comment available",
             icon: "info",
             background: "#1f2937",

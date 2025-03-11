@@ -14,8 +14,8 @@ import PageTitleContainer from "~/components/Youtube/PageTitleContainer";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "Watch technology" },
-    { name: "description", content: "Watch technology for youtube !" },
+    { title: "Veille technologique" },
+    { name: "description", content: "Veille technologique Youtube !" },
   ];
 }
 import { ImYoutube } from "react-icons/im";
@@ -103,7 +103,7 @@ export default function Home() {
       <div className="container mx-auto px-4 flex flex-col gap-5">
         <PageTitleContainer
           icon={<ImYoutube className="w-14 h-14 text-red-600" />}
-          title="Electronic component"
+          title="Composants électroniques"
         />
         <TotalVideosCountContainer videos={videos} />
         {!!latestVideosSummary && (
@@ -117,7 +117,7 @@ export default function Home() {
           onFilters={handleFilterChange}
         /> */}
         <div>
-          <SectionTitleContainer title="All Videos" />
+          <SectionTitleContainer title="Toutes les vidéos" />
           <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {paginatedVideos.map((video) => (
               <CardContainer

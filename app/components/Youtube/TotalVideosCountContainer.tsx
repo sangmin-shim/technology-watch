@@ -15,7 +15,7 @@ function TotalVideosCountContainer({ videos }: TotalVideosCountContainerProps) {
     <div>
       <div className="border border-gray-700 flex w-fit items-center gap-2 px-4 py-2 rounded-lg text-white">
         <Film className="h-5 w-5" />
-        <span className="font-medium">Total Videos:</span>
+        <span className="font-medium">Nombre de vidéos :</span>
         <span className="text-primary-foreground px-2 py-0.5 rounded-md font-bold">
           {totalVideosCount}
         </span>

@@ -18,7 +18,7 @@ function LatestVideosContainer({
     <div>
       <div className="flex items-center gap-3 mb-6">
         <PingAnimation />
-        <SectionTitleContainer title="Latest Videos" />
+        <SectionTitleContainer title="Dernières vidéos" />
         <LatestVideoDateRange summary={summary} />
       </div>
       <AiSummarySection summary={summary} />
@@ -44,7 +44,7 @@ function AiSummarySection({ summary }: { summary: Summaries[number] }) {
         </div>
         <div className="border">
           <h3 className="font-medium text-red-700 dark:text-red-300 mb-1 flex items-center text-xl">
-            AI Recommendations
+            Résumé du jour par l'IA
           </h3>
           <p className="text-lg text-black font-regular">
             &nbsp; {summary.day_summary}
