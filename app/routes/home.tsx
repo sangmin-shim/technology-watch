@@ -45,9 +45,10 @@ export const loader = async () => {
         const summaryDate = new Date(summary.created_at);
 
         return (
-          videoDate.getFullYear() === summaryDate.getFullYear() &&
-          videoDate.getMonth() === summaryDate.getMonth() &&
-          videoDate.getDate() === summaryDate.getDate()
+          (videoDate.getFullYear() === summaryDate.getFullYear() &&
+            videoDate.getMonth() === summaryDate.getMonth() &&
+            videoDate.getDate() === summaryDate.getDate()) ||
+          videoDate.getDate() === summaryDate.getDate() - 1
         );
       })
     )
