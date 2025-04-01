@@ -57,7 +57,7 @@ function AiSummarySection({ summary }: { summary: Summaries[number] }) {
 
 function LatestVideoDateRange({ summary }: { summary: Summaries[number] }) {
   return (
-    <p className="text-lg text-gray-300">
+    <p className="text-lg text-gray-300 mt-2">
       {summary?.created_at
         ? new Date(
             new Date(summary.created_at).getTime() - 86400000
@@ -72,7 +72,7 @@ function LatestVideoDateRange({ summary }: { summary: Summaries[number] }) {
 function PingAnimation() {
   return (
     <div>
-      <span className="relative flex size-3">
+      <span className="relative flex size-3 mt-2">
         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-400 opacity-75"></span>
         <span className="relative inline-flex size-3 rounded-full bg-red-500"></span>
       </span>
