@@ -68,7 +68,7 @@ export default function Home() {
     useLoaderData<typeof loader>();
   const [videos, setVideos] = useState<VideosWithChannel>(videosFromDB);
   const [currentPage, setCurrentPage] = useState<number>(1);
-  const DEFAULT_PAGE_SIZE = 9;
+  const DEFAULT_PAGE_SIZE = 18;
   const totalPages = useMemo(
     () => Math.ceil(videos.length / DEFAULT_PAGE_SIZE),
     [videos]
