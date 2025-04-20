@@ -1,16 +1,10 @@
-import type { Route } from "./+types/home";
 import {
   youtubeService,
   type Channels,
   type VideosWithChannel,
-} from "../services/supabase";
+} from "../services/supabase.electronic-components";
 import { useLoaderData } from "react-router";
 import { useMemo, useState } from "react";
-import CardFilterContainer from "~/components/Youtube/Card/CardFilterContainer";
-import { CardContainer } from "~/components/Youtube/Card/CardContainer";
-import CardPaginationContainer from "~/components/Youtube/Card/CardPaginationContainer";
-import TotalVideosCountContainer from "~/components/Youtube/TotalVideosCountContainer";
-import PageTitleContainer from "~/components/Youtube/PageTitleContainer";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -19,8 +13,13 @@ export function meta({}: Route.MetaArgs) {
   ];
 }
 import { ImYoutube } from "react-icons/im";
-import LatestVideosContainer from "~/components/Youtube/LatestVideosContainer";
-import SectionTitleContainer from "~/components/Youtube/SectionTitleContainer";
+import type { Route } from "../+types/root";
+import PageTitleContainer from "~/components/ElectronicComponents/PageTitleContainer";
+import TotalVideosCountContainer from "~/components/ElectronicComponents/TotalVideosCountContainer";
+import LatestVideosContainer from "~/components/ElectronicComponents/LatestVideosContainer";
+import SectionTitleContainer from "~/components/ElectronicComponents/SectionTitleContainer";
+import { CardContainer } from "~/components/ElectronicComponents/Card/CardContainer";
+import CardPaginationContainer from "~/components/ElectronicComponents/Card/CardPaginationContainer";
 
 export const loader = async () => {
   const today = new Date();
@@ -63,7 +62,7 @@ export const loader = async () => {
   };
 };
 
-export default function Home() {
+export default function index() {
   const { videosFromDB, channelsFromDB, latestVideos, latestVideosSummary } =
     useLoaderData<typeof loader>();
   const [videos, setVideos] = useState<VideosWithChannel>(videosFromDB);
