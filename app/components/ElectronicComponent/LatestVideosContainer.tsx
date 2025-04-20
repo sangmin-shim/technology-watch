@@ -3,7 +3,7 @@ import type {
   Summaries,
   VideosWithChannel,
 } from "~/services/supabase.electronic-components";
-import SectionTitleContainer from "./SectionTitleContainer";
+import SectionTitleContainer from "../common/SectionTitleContainer";
 import { CardContainer } from "./Card/CardContainer";
 import { MessageCircleWarning } from "lucide-react";
 import { RiRobot2Line } from "react-icons/ri";

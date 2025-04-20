@@ -14,12 +14,13 @@ export function meta({}: Route.MetaArgs) {
 }
 import { ImYoutube } from "react-icons/im";
 import type { Route } from "../+types/root";
-import PageTitleContainer from "~/components/ElectronicComponents/PageTitleContainer";
-import TotalVideosCountContainer from "~/components/ElectronicComponents/TotalVideosCountContainer";
-import LatestVideosContainer from "~/components/ElectronicComponents/LatestVideosContainer";
-import SectionTitleContainer from "~/components/ElectronicComponents/SectionTitleContainer";
-import { CardContainer } from "~/components/ElectronicComponents/Card/CardContainer";
-import CardPaginationContainer from "~/components/ElectronicComponents/Card/CardPaginationContainer";
+import PageTitleContainer from "~/components/common/PageTitleContainer";
+import TotalVideosCountContainer from "~/components/ElectronicComponent/TotalVideosCountContainer";
+import LatestVideosContainer from "~/components/ElectronicComponent/LatestVideosContainer";
+import SectionTitleContainer from "~/components/common/SectionTitleContainer";
+import { CardContainer } from "~/components/ElectronicComponent/Card/CardContainer";
+import CardPaginationContainer from "~/components/ElectronicComponent/Card/CardPaginationContainer";
+import { Cable } from "lucide-react";
 
 export const loader = async () => {
   const today = new Date();
@@ -102,10 +103,10 @@ export default function index() {
     <div className="min-h-screen bg-gray-900 py-12 flex flex-col gap-5 text-white">
       <div className="container mx-auto px-4 flex flex-col gap-5">
         <PageTitleContainer
-          icon={<ImYoutube className="w-14 h-14 text-red-600" />}
-          title="Composants électroniques"
+          icon={<Cable className="w-10 h-10" />}
+          title="Electronic Component"
         />
-        <TotalVideosCountContainer videos={videos} />
+        {/* <TotalVideosCountContainer videos={videos} /> */}
         {!!latestVideosSummary && (
           <LatestVideosContainer
             videos={latestVideos}

@@ -7,10 +7,10 @@ interface PageTitleContainerProps {
 
 function PageTitleContainer({ title, icon }: PageTitleContainerProps) {
   return (
-    <div className="flex items-center gap-4 text-white">
-      <div>{icon}</div>
+    <div className="flex items-center gap-4 text-white mb-10">
+      <div className="text-white">{icon}</div>
       <div>
-        <h1 className="text-4xl font-bold">{title}</h1>
+        <h1 className="text-5xl font-bold">{title}</h1>
       </div>
     </div>
   );
