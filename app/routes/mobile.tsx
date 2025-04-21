@@ -30,6 +30,7 @@ import {
   InputOTPSlot,
 } from "~/components/ui/input-otp";
 import { useState } from "react";
+import useIsMobile from "~/components/hooks/useMobile";
 
 export const loader = async () => {
   // --------------------------
@@ -76,11 +77,17 @@ export default function index() {
     lynxBlogContents,
     N8N_WEBHOOK_URL,
   } = useLoaderData<typeof loader>();
-
+  const isMobile = useIsMobile();
   return (
     <div className="min-h-screen bg-gray-900 py-12 flex flex-col text-white">
       <div className="container mx-auto px-4 flex flex-col gap-5">
-        <div className="flex justify-between items-center">
+        <div
+          className={`${
+            isMobile
+              ? "flex flex-col justify-center items-center"
+              : "flex justify-between items-center"
+          } `}
+        >
           <PageTitleContainer
             icon={<Smartphone className="w-10 h-10" />}
             title="Mobile"
@@ -149,7 +156,7 @@ function PopoverWithForm({ hookURL }: { hookURL: string }) {
           Send SMS
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-100 bg-gray-600 text-white">
+      <PopoverContent className="w-fit bg-gray-600 text-white">
         <div className="grid gap-4">
           <div className="space-y-2">
             <h4 className="font-medium leading-none">Phone Number</h4>

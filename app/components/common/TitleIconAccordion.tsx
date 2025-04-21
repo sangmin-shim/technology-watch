@@ -32,10 +32,25 @@ export function TitleIconAccordion({ items }: Props) {
         <AccordionItem key={index} value={`item-${index}`}>
           <AccordionTrigger className="cursor-pointer">
             <div className="flex  items-center justify-between w-full">
-              <div className="flex items-center gap-3">
-                <AvatarTitleSection title={item.title} />
-                {item.contents?.length} {item.type}s
-              </div>
+              {isMobile ? (
+                <div className="flex items-center gap-3 w-full justify-between">
+                  <div>
+                    <AvatarTitleSection title={item.title} />
+                  </div>
+                  <div className="text-sm pr-2 text-right">
+                    {item.contents?.length} {item.type}s
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-center gap-3 ">
+                  <div>
+                    <AvatarTitleSection title={item.title} />
+                  </div>
+                  <div>
+                    {item.contents?.length} {item.type}s
+                  </div>
+                </div>
+              )}
               {!!item.extraInfo && !isMobile && (
                 <div className="px-2">{item.extraInfo}</div>
               )}
@@ -54,15 +69,31 @@ export function TitleIconAccordion({ items }: Props) {
 
 function AvatarTitleSection({ title }: { title: string }) {
   const IMAGE_PATH = "../../../images/";
+  const isMobile = useIsMobile();
+
   return (
     <div className="flex items-center gap-4">
-      <Avatar className="w-10 h-10">
-        <AvatarImage
-          src={IMAGE_PATH + title + ".jpg"}
-          className="rounded-full w-10 h-10 bg-white"
-        />
-      </Avatar>
-      <span className="text-xl font-semibold">{title}</span>
+      {isMobile ? (
+        <>
+          <Avatar className="w-8 h-8">
+            <AvatarImage
+              src={IMAGE_PATH + title + ".jpg"}
+              className="rounded-full w-8 h-8 bg-white"
+            />
+          </Avatar>
+          <span className="text-[1rem] font-semibold">{title}</span>
+        </>
+      ) : (
+        <>
+          <Avatar className="w-10 h-10">
+            <AvatarImage
+              src={IMAGE_PATH + title + ".jpg"}
+              className="rounded-full w-10 h-10 bg-white"
+            />
+          </Avatar>
+          <span className="text-xl font-semibold">{title}</span>
+        </>
+      )}
     </div>
   );
 }
