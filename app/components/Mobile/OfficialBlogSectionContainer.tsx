@@ -57,7 +57,7 @@ function OfficialBlogSectionContainer({
                     <span className="font-bold">{formattedDate}</span>
                   </div>
                   <div className="flex justify-end">
-                    ({blogResult.data["2025"][0]["year"]})
+                    ({dayjs(formattedDate).fromNow()})
                   </div>
                 </div>
               ),
