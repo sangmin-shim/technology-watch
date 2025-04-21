@@ -46,7 +46,13 @@ export async function getLynxBlogContents(): Promise<
     const content = contentParts.join("\n\n");
 
     if (!data[dateParts.year]) data[dateParts.year] = [];
-    data[dateParts.year].push({ ...dateParts, title, url, content });
+    data[dateParts.year].push({
+      ...dateParts,
+      title,
+      url,
+      content,
+      framework: "Lynx",
+    });
   });
 
   return {

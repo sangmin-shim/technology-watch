@@ -68,7 +68,7 @@ export async function getReactNativeBlogContents(): Promise<
   await Promise.all(
     postsToFetch.map(async (post) => {
       const content = await fetchReactNativePostContent(post.url);
-      data[post.yearKey].push({ ...post, content });
+      data[post.yearKey].push({ ...post, content, framework: "React Native" });
     })
   );
 

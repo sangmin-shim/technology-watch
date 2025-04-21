@@ -1,6 +1,7 @@
 // blogUtils.ts
 
 export type OfficialBlogEntry = {
+  framework: string;
   year: string;
   month: string;
   day: string;

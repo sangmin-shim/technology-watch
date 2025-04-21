@@ -9,6 +9,7 @@ import type { Tables } from "~/types/database.mobile.types";
 import { TitleIconAccordion } from "../common/TitleIconAccordion";
 import type { OfficialBlogResult } from "~/services/official-blog";
 import dayjs from "dayjs";
+import { TitleIconAccordionByYear } from "../common/TitleIconAccordionByYear";
 
 interface OfficialBlogSectionContainerProps {
   officialBlogs: Tables<"official_blogs">[] | null;
@@ -22,15 +23,14 @@ function OfficialBlogSectionContainer({
     return null;
   }
 
-  console.log("officialBlogResult :: ", officialBlogResult);
   return (
     <Fragment>
       <SectionTitleWithIconContainer
         title="Official Blog"
         icon={<ImBlog className="w-10 h-10" />}
       />
-      <TitleIconAccordion
-        items={officialBlogs.map((blog) => {
+      <TitleIconAccordionByYear
+        items={officialBlogs.map((blog, index) => {
           const blogResult = officialBlogResult.find(
             (result) => result.framework === blog.blog_name
           );
@@ -61,6 +61,7 @@ function OfficialBlogSectionContainer({
                   </div>
                 </div>
               ),
+              contents: blogResult.data,
             };
           } else {
             return {
@@ -68,16 +69,6 @@ function OfficialBlogSectionContainer({
               type: "Article",
             };
           }
-
-          // return {
-          //   title: blog.blog_name,
-          //   type: "Article",
-          //   extraInfo: (
-          //     <div className="flex flex-col flex-wrap">
-          //       <div>NOT YET</div>
-          //     </div>
-          //   ),
-          // };
         })}
       />
     </Fragment>
