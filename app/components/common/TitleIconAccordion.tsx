@@ -6,6 +6,7 @@ import {
   AccordionTrigger,
 } from "../ui/accordion";
 import type { ReactNode } from "react";
+import useIsMobile from "../hooks/useMobile";
 
 interface TitleIconAccordionItem {
   title: string;
@@ -20,6 +21,7 @@ interface Props {
 
 export function TitleIconAccordion({ items }: Props) {
   if (!items) return;
+  const isMobile = useIsMobile();
 
   return (
     <Accordion
@@ -34,12 +36,14 @@ export function TitleIconAccordion({ items }: Props) {
                 <AvatarTitleSection title={item.title} />
                 {item.contents?.length} {item.type}s
               </div>
-              {!!item.extraInfo && <div className="px-2">{item.extraInfo}</div>}
+              {!!item.extraInfo && !isMobile && (
+                <div className="px-2">{item.extraInfo}</div>
+              )}
             </div>
           </AccordionTrigger>
           <AccordionContent className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {item.contents?.map((content) => (
-              <div key={content?.toString()}>{content}</div>
+              <div key={content?.toLocaleString()}>{content}</div>
             ))}
           </AccordionContent>
         </AccordionItem>

@@ -7,6 +7,9 @@ const supabase = createClient<Database>(
 );
 
 export const mobileService = {
+  // --------------------------
+  // Youtube
+  // --------------------------
   async getYoutubeChannels() {
     const { data, error } = await supabase.from("youtube_channels").select("*");
     if (error) throw error;
@@ -17,6 +20,26 @@ export const mobileService = {
     const { data, error } = await supabase
       .from("youtube_videos")
       .select(`*, youtube_channels (channel_name)`)
+      .order("published_at", { ascending: false });
+
+    if (error) throw error;
+    return data;
+  },
+
+  // --------------------------
+  // Medium
+  // --------------------------
+  async getMediumBlogs() {
+    const { data, error } = await supabase.from("medium_blogs").select("*");
+
+    if (error) throw error;
+    return data;
+  },
+
+  async getMediumBlogContents() {
+    const { data, error } = await supabase
+      .from("medium_blog_contents")
+      .select(`*, medium_blogs (blog_name)`)
       .order("published_at", { ascending: false });
 
     if (error) throw error;

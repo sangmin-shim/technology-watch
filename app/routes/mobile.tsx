@@ -8,14 +8,26 @@ import YoutubeSectionContainer from "~/components/Mobile/YoutubeSectionContainer
 import { mobileService } from "~/services/supabase.mobile";
 
 export const loader = async () => {
+  // --------------------------
+  // Youtube
+  // --------------------------
   const youtubeChannels = await mobileService.getYoutubeChannels();
   const youtubeVideos = await mobileService.getYoutubeVideos();
-  return { youtubeChannels, youtubeVideos };
+
+  // ----------------------------
+  // Medium
+  // ----------------------------
+  const mediumBlogContents = await mobileService.getMediumBlogContents();
+  const mediumBlogs = await mobileService.getMediumBlogs();
+
+  return { youtubeChannels, youtubeVideos, mediumBlogs, mediumBlogContents };
 };
 
 export default function index() {
-  const { youtubeChannels, youtubeVideos } = useLoaderData<typeof loader>();
+  const { youtubeChannels, youtubeVideos, mediumBlogs, mediumBlogContents } =
+    useLoaderData<typeof loader>();
 
+  console.log("mediumBlogContents :: ", mediumBlogContents);
   return (
     <div className="min-h-screen bg-gray-900 py-12 flex flex-col text-white">
       <div className="container mx-auto px-4 flex flex-col gap-5">
@@ -27,7 +39,10 @@ export default function index() {
           youtubeChannels={youtubeChannels}
           youtubeVideos={youtubeVideos}
         />
-        <MediumSectionContainer />
+        <MediumSectionContainer
+          mediumBlogs={mediumBlogs}
+          mediumBlogContents={mediumBlogContents}
+        />
         <OfficialBlogSectionContainer />
       </div>
     </div>

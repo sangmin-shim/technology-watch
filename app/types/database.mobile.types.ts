@@ -15,7 +15,8 @@ export type Database = {
           contents: Json | null
           guid: string
           id: number
-          published_at: string | null
+          published_at: string
+          title: string | null
           year: number | null
         }
         Insert: {
@@ -23,7 +24,8 @@ export type Database = {
           contents?: Json | null
           guid: string
           id?: number
-          published_at?: string | null
+          published_at: string
+          title?: string | null
           year?: number | null
         }
         Update: {
@@ -31,7 +33,8 @@ export type Database = {
           contents?: Json | null
           guid?: string
           id?: number
-          published_at?: string | null
+          published_at?: string
+          title?: string | null
           year?: number | null
         }
         Relationships: [
@@ -136,7 +139,6 @@ export type Database = {
       youtube_videos: {
         Row: {
           channel_id: string
-          created_at: string
           description: string | null
           id: number
           published_at: string
@@ -146,7 +148,6 @@ export type Database = {
         }
         Insert: {
           channel_id: string
-          created_at?: string
           description?: string | null
           id?: number
           published_at: string
@@ -156,7 +157,6 @@ export type Database = {
         }
         Update: {
           channel_id?: string
-          created_at?: string
           description?: string | null
           id?: number
           published_at?: string
