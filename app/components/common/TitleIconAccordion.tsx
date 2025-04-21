@@ -26,7 +26,7 @@ export function TitleIconAccordion({ items }: Props) {
   return (
     <Accordion
       type="multiple"
-      className="w-full flex flex-col gap-4 px-10 mb-10"
+      className="w-full flex flex-col gap-4 px-3 mb-10"
     >
       {items.map((item, index) => (
         <AccordionItem key={index} value={`item-${index}`}>
