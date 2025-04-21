@@ -35,7 +35,12 @@ export function TitleIconAccordionByYear({ items }: Props) {
             <div className="flex  items-center justify-between w-full">
               <div className="flex items-center gap-3">
                 <AvatarTitleSection title={item.title} />
-                {/* {item.contents?.length} {item.type}s */}
+                {
+                  Object.values(item.contents || {}).flatMap(
+                    (content) => content
+                  ).length
+                }{" "}
+                {item.type}s
               </div>
               {!!item.extraInfo && !isMobile && (
                 <div className="px-2">{item.extraInfo}</div>
@@ -61,15 +66,12 @@ export function TitleIconAccordionByYear({ items }: Props) {
                               className="py-3 px-4 flex flex-col gap-3  rounded-lg bg-gray-600 hover:bg-gray-500 hover:text-gray-300"
                             >
                               <div>
-                                <h3 className="h-36 text-lg font-semibold text-white text-left">
-                                  {/* {blogContent.title} */}
-                                  <div>item.title : {item.title}</div>
-                                  <div>item.type : {item.type}</div>
-                                  <div>
-                                    blogContent.framework :
-                                    {blogContent.framework}
-                                  </div>
+                                <h3 className="h-20 text-lg font-semibold text-white text-left">
+                                  {blogContent.title}
                                 </h3>
+                              </div>
+                              <div className="overflow-hidden text-ellipsis line-clamp-3">
+                                {blogContent.content}
                               </div>
                               <div>
                                 <a
