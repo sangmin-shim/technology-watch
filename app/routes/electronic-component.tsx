@@ -6,16 +6,8 @@ import {
 import { useLoaderData } from "react-router";
 import { useMemo, useState } from "react";
 
-export function meta({}: Route.MetaArgs) {
-  return [
-    { title: "Veille technologique" },
-    { name: "description", content: "Veille technologique Youtube !" },
-  ];
-}
-import { ImYoutube } from "react-icons/im";
 import type { Route } from "../+types/root";
 import PageTitleContainer from "~/components/common/PageTitleContainer";
-import TotalVideosCountContainer from "~/components/ElectronicComponent/TotalVideosCountContainer";
 import LatestVideosContainer from "~/components/ElectronicComponent/LatestVideosContainer";
 import SectionTitleContainer from "~/components/common/SectionTitleContainer";
 import { CardContainer } from "~/components/ElectronicComponent/Card/CardContainer";
@@ -129,7 +121,6 @@ export default function index() {
             ))}
           </div>
         </div>
-
         <CardPaginationContainer
           totalPages={totalPages}
           currentPage={currentPage}

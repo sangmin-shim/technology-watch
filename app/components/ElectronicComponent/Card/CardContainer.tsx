@@ -5,7 +5,7 @@ import { CardTitle } from "./CardTitle";
 import { CardDescription } from "./CardDescription";
 import { VideoModal } from "../VideoModal/VideoModal";
 import { PlayButtonOverlay } from "~/components/ui/svg";
-import type { Tables } from "~/types/database.types";
+import type { Tables } from "~/types/database.electronic-components.types";
 import AiContainer from "../Ai/AiContainer";
 
 interface CardContainer {

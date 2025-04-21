@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import { FaRegArrowAltCircleDown, FaRegArrowAltCircleUp } from "react-icons/fa";
-import type { Tables } from "~/types/database.types";
+import type { Tables } from "~/types/database.electronic-components.types";
 
 interface CardDescriptionProps {
   description: Tables<"youtube_videos">["description"];

@@ -10,7 +10,7 @@ function SectionTitleWithIconContainer({
   icon,
 }: SectionTitleWithIconContainerProps) {
   return (
-    <div className="flex items-center gap-5 mb-4">
+    <div className="flex items-center gap-5">
       <div>{icon}</div>
       <SectionTitleContainer title={title} />
     </div>

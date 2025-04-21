@@ -1,9 +1,9 @@
 import { createClient } from "@supabase/supabase-js";
-import type { Database } from "~/types/database.types";
+import type { Database } from "~/types/database.electronic-components.types";
 
-export const supabase = createClient<Database>(
-  process.env.VITE_SUPABASE_URL!,
-  process.env.VITE_SUPABASE_ANON_KEY!
+const supabase = createClient<Database>(
+  process.env.VITE_SUPABASE_ELECTRONIC_COMPONENT_URL!,
+  process.env.VITE_SUPABASE_ANON_ELECTRONIC_COMPONENT_KEY!
 );
 
 export const youtubeService = {
