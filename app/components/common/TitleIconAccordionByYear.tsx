@@ -49,13 +49,13 @@ export function TitleIconAccordionByYear({ items }: Props) {
           </AccordionTrigger>
           <AccordionContent>
             {
-              <div key={item.title} className="flex flex-col gap-5">
+              <div key={item.title} className="flex flex-col gap-10">
                 {Object.keys(item.contents || {})
                   .sort((a, b) => Number(b) - Number(a))
                   .map((year) => (
                     <div
                       key={year + item.title}
-                      className="flex flex-col gap-5"
+                      className="flex flex-col gap-2"
                     >
                       <div className="text-xl">{year}</div>
                       <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
@@ -66,7 +66,7 @@ export function TitleIconAccordionByYear({ items }: Props) {
                               className="py-3 px-4 flex flex-col gap-3  rounded-lg bg-gray-600 hover:bg-gray-500 hover:text-gray-300"
                             >
                               <div>
-                                <h3 className="h-20 text-lg font-semibold text-white text-left">
+                                <h3 className="h-28 text-lg font-semibold text-white text-left">
                                   {blogContent.title}
                                 </h3>
                               </div>
