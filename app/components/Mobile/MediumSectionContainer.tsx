@@ -57,7 +57,10 @@ function MediumSectionContainer({
               <div className="flex flex-col flex-wrap">
                 <div>
                   Last updated at &nbsp;
-                  {lastUpdatedDate}
+                  <span className="font-bold">{lastUpdatedDate}</span>
+                </div>
+                <div className="flex justify-end">
+                  ({dayjs(lastUpdatedDate).fromNow()})
                 </div>
               </div>
             ),
