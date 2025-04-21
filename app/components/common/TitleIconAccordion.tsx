@@ -59,7 +59,7 @@ function AvatarTitleSection({ title }: { title: string }) {
       <Avatar className="w-10 h-10">
         <AvatarImage
           src={IMAGE_PATH + title + ".jpg"}
-          className="rounded-full w-10 h-10"
+          className="rounded-full w-10 h-10 bg-white"
         />
       </Avatar>
       <span className="text-xl font-semibold">{title}</span>

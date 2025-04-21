@@ -4,6 +4,8 @@ import PageTitleContainer from "~/components/common/PageTitleContainer";
 import MediumSectionContainer from "~/components/Mobile/MediumSectionContainer";
 import OfficialBlogSectionContainer from "~/components/Mobile/OfficialBlogSectionContainer";
 import YoutubeSectionContainer from "~/components/Mobile/YoutubeSectionContainer";
+import { getLynxBlogContents } from "~/services/fetch.lynx";
+import { getReactNativeBlogContents } from "~/services/fetch.react-native";
 
 import { mobileService } from "~/services/supabase.mobile";
 
@@ -20,14 +22,36 @@ export const loader = async () => {
   const mediumBlogContents = await mobileService.getMediumBlogContents();
   const mediumBlogs = await mobileService.getMediumBlogs();
 
-  return { youtubeChannels, youtubeVideos, mediumBlogs, mediumBlogContents };
+  // ----------------------------
+  // Official Blog
+  // ----------------------------
+
+  const officialBlogs = await mobileService.getOfficialBlogs();
+
+  const reactNativeBlogContents = await getReactNativeBlogContents();
+  const lynxBlogContents = await getLynxBlogContents();
+  return {
+    youtubeChannels,
+    youtubeVideos,
+    mediumBlogs,
+    mediumBlogContents,
+    officialBlogs,
+    reactNativeBlogContents,
+    lynxBlogContents,
+  };
 };
 
 export default function index() {
-  const { youtubeChannels, youtubeVideos, mediumBlogs, mediumBlogContents } =
-    useLoaderData<typeof loader>();
+  const {
+    youtubeChannels,
+    youtubeVideos,
+    mediumBlogs,
+    mediumBlogContents,
+    officialBlogs,
+    reactNativeBlogContents,
+    lynxBlogContents,
+  } = useLoaderData<typeof loader>();
 
-  console.log("mediumBlogContents :: ", mediumBlogContents);
   return (
     <div className="min-h-screen bg-gray-900 py-12 flex flex-col text-white">
       <div className="container mx-auto px-4 flex flex-col gap-5">
@@ -43,7 +67,10 @@ export default function index() {
           mediumBlogs={mediumBlogs}
           mediumBlogContents={mediumBlogContents}
         />
-        <OfficialBlogSectionContainer />
+        <OfficialBlogSectionContainer
+          officialBlogs={officialBlogs}
+          officialBlogResult={[reactNativeBlogContents, lynxBlogContents]}
+        />
       </div>
     </div>
   );

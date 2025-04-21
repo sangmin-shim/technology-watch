@@ -45,4 +45,14 @@ export const mobileService = {
     if (error) throw error;
     return data;
   },
+
+  // --------------------------
+  // Official Blog
+  // --------------------------
+  async getOfficialBlogs() {
+    const { data, error } = await supabase.from("official_blogs").select("*");
+
+    if (error) throw error;
+    return data;
+  },
 };
