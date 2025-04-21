@@ -16,7 +16,8 @@ export const mobileService = {
   async getYoutubeVideos() {
     const { data, error } = await supabase
       .from("youtube_videos")
-      .select(`*, youtube_channels (channel_name)`);
+      .select(`*, youtube_channels (channel_name)`)
+      .order("published_at", { ascending: false });
 
     if (error) throw error;
     return data;

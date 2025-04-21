@@ -9,6 +9,7 @@ import type { ReactNode } from "react";
 
 interface TitleIconAccordionItem {
   title: string;
+  type: string;
   extraInfo?: ReactNode;
   contents?: ReactNode[];
 }
@@ -29,7 +30,10 @@ export function TitleIconAccordion({ items }: Props) {
         <AccordionItem key={index} value={`item-${index}`}>
           <AccordionTrigger className="cursor-pointer">
             <div className="flex  items-center justify-between w-full">
-              <AvatarTitleSection title={item.title} />
+              <div className="flex items-center gap-3">
+                <AvatarTitleSection title={item.title} />
+                {item.contents?.length} {item.type}s
+              </div>
               {!!item.extraInfo && <div className="px-2">{item.extraInfo}</div>}
             </div>
           </AccordionTrigger>

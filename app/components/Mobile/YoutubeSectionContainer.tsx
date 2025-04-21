@@ -46,16 +46,23 @@ function YoutubeSectionContainer({
           );
 
           const lastUpdatedDate = latestVideo
-            ? dayjs(latestVideo.published_at).format("MMM D, YYYY")
+            ? dayjs(latestVideo.published_at)
+                .add(1, "day")
+                .format("MMM D, YYYY")
             : "Unknown";
 
           return {
             title: channel.channel_name,
+            type: "Video",
             extraInfo: (
-              <div>
-                Last updated at &nbsp;
-                <span className="font-bold">{lastUpdatedDate}</span> &nbsp; (
-                {dayjs(lastUpdatedDate).fromNow()})
+              <div className="flex flex-col flex-wrap">
+                <div>
+                  Last updated at &nbsp;
+                  <span className="font-bold">{lastUpdatedDate}</span>
+                </div>
+                <div className="flex justify-end">
+                  ({dayjs(lastUpdatedDate).fromNow()})
+                </div>
               </div>
             ),
             contents: channel.videos.map((video) => (
