@@ -46,9 +46,7 @@ function YoutubeSectionContainer({
           );
 
           const lastUpdatedDate = latestVideo
-            ? dayjs(latestVideo.published_at)
-                .add(1, "day")
-                .format("MMM D, YYYY")
+            ? dayjs(latestVideo.published_at).format("MMM D, YYYY")
             : "Unknown";
 
           return {
