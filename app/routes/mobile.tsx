@@ -1,4 +1,4 @@
-import { MessageSquareMore, Smartphone } from "lucide-react";
+import { MessageSquareMore, Phone, Smartphone } from "lucide-react";
 import { useLoaderData } from "react-router";
 import PageTitleContainer from "~/components/common/PageTitleContainer";
 import MediumSectionContainer from "~/components/Mobile/MediumSectionContainer";
@@ -85,10 +85,11 @@ export default function index() {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   return (
-    <div className="min-h-screen bg-gray-900 py-12 flex flex-col text-white">
+    <div className="min-h-screen bg-gray-900 py-12 flex flex-col text-white overflow-x-hidden">
       {isSubmitted && (
         <Confetti
-          width={size.width ? size.width - 100 : 500}
+          className="m-auto"
+          width={isMobile ? size.width || 500 : (size.width || 600) - 100}
           height={size.height || 1000}
           numberOfPieces={200}
         />
@@ -191,7 +192,10 @@ function PopoverWithForm({
       <PopoverContent className="w-fit bg-gray-600 text-white">
         <div className="grid gap-4">
           <div className="space-y-2">
-            <h4 className="font-medium leading-none">Phone Number</h4>
+            <div className="flex items-center gap-2">
+              <Phone className="w-5 h-5" />
+              <h4 className="font-medium leading-none">Phone Number</h4>
+            </div>
             <Form {...form}>
               <form
                 onSubmit={form.handleSubmit(onSubmit)}
