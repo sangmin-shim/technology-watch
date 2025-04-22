@@ -6,13 +6,13 @@ import {
 import { useLoaderData } from "react-router";
 import { useMemo, useState } from "react";
 
-import type { Route } from "../+types/root";
 import PageTitleContainer from "~/components/common/PageTitleContainer";
 import LatestVideosContainer from "~/components/ElectronicComponent/LatestVideosContainer";
 import SectionTitleContainer from "~/components/common/SectionTitleContainer";
 import { CardContainer } from "~/components/ElectronicComponent/Card/CardContainer";
 import CardPaginationContainer from "~/components/ElectronicComponent/Card/CardPaginationContainer";
 import { Cable } from "lucide-react";
+import BackToHomeButton from "~/components/common/BackToHomeButton";
 
 export const loader = async () => {
   const today = new Date();
@@ -94,6 +94,7 @@ export default function index() {
   return (
     <div className="min-h-screen bg-gray-900 py-12 flex flex-col gap-5 text-white">
       <div className="container mx-auto px-4 flex flex-col gap-5">
+        <BackToHomeButton />
         <PageTitleContainer
           icon={<Cable className="w-10 h-10" />}
           title="Electronic Component"

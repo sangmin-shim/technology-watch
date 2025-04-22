@@ -34,6 +34,7 @@ import useIsMobile from "~/components/hooks/useMobile";
 import Confetti from "react-confetti";
 import { useWindowSize } from "@uidotdev/usehooks";
 import toast, { Toaster } from "react-hot-toast";
+import BackToHomeButton from "~/components/common/BackToHomeButton";
 
 export const loader = async () => {
   // --------------------------
@@ -95,6 +96,8 @@ export default function index() {
         />
       )}
       <div className="container mx-auto px-4 flex flex-col gap-5">
+        <BackToHomeButton />
+
         <div
           className={`${
             isMobile
