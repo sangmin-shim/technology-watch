@@ -31,6 +31,9 @@ import {
 } from "~/components/ui/input-otp";
 import { useState } from "react";
 import useIsMobile from "~/components/hooks/useMobile";
+import Confetti from "react-confetti";
+import { useWindowSize } from "@uidotdev/usehooks";
+import toast, { Toaster } from "react-hot-toast";
 
 export const loader = async () => {
   // --------------------------
@@ -78,8 +81,18 @@ export default function index() {
     N8N_WEBHOOK_URL,
   } = useLoaderData<typeof loader>();
   const isMobile = useIsMobile();
+  const size = useWindowSize();
+
+  const [isSubmitted, setIsSubmitted] = useState(false);
   return (
     <div className="min-h-screen bg-gray-900 py-12 flex flex-col text-white">
+      {isSubmitted && (
+        <Confetti
+          width={size.width ? size.width - 100 : 500}
+          height={size.height || 1000}
+          numberOfPieces={200}
+        />
+      )}
       <div className="container mx-auto px-4 flex flex-col gap-5">
         <div
           className={`${
@@ -92,7 +105,10 @@ export default function index() {
             icon={<Smartphone className="w-10 h-10" />}
             title="Mobile"
           />
-          <PopoverWithForm hookURL={N8N_WEBHOOK_URL || ""} />
+          <PopoverWithForm
+            hookURL={N8N_WEBHOOK_URL || ""}
+            onSubmitted={setIsSubmitted}
+          />
         </div>
         <YoutubeSectionContainer
           youtubeChannels={youtubeChannels}
@@ -117,8 +133,14 @@ const FormSchema = z.object({
   }),
 });
 
-function PopoverWithForm({ hookURL }: { hookURL: string }) {
-  const [phoneNumber, setPhoneNumber] = useState("");
+function PopoverWithForm({
+  hookURL,
+  onSubmitted,
+}: {
+  hookURL: string;
+  onSubmitted: (isSubmitted: boolean) => void;
+}) {
+  const [open, setOpen] = useState(false);
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -142,14 +164,24 @@ function PopoverWithForm({ hookURL }: { hookURL: string }) {
       }
 
       const result = await response.json();
-      console.log("Success:", result);
+      onSubmitted(true);
+      toast.success("SMS sent successfully!", {
+        duration: 5000,
+        position: "top-center",
+      });
+
+      setTimeout(() => {
+        setOpen(false);
+        onSubmitted(false);
+      }, 7000);
     } catch (err) {
       console.error("Request failed:", err);
     }
   }
 
   return (
-    <Popover>
+    <Popover open={open} onOpenChange={setOpen}>
+      <Toaster />
       <PopoverTrigger asChild>
         <Button className="w-fit bg-white text-gray-700 mr-3 font-bold flex items-center hover:bg-gray-600 hover:text-white hover:cursor-pointer">
           <MessageSquareMore />
